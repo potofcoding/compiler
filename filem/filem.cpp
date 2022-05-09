@@ -9,8 +9,8 @@ void filem::load_file_into_variable(char* file,string &s){
     }
 }
 
-void filem::write_to_file(string s){
-    ofstream myfile;
-    myfile.open ("../example.txt");
-    myfile.close();
+void filem::write_to_file(string s, void (*ptr)()){
+    filer.open ("../example.txt");
+    ptr();
+    filer.close();
 }

@@ -1,0 +1,85 @@
+#pragma once
+#include <iostream>
+using namespace std;
+string wtypes[67] ={"auto",};
+
+enum types{
+AUTO,
+BREAK,
+CASE,
+CHAR,
+CONST,
+CONTINUE,
+DEFAULT,
+DO,
+DOUBLE,
+ELSE,
+ENUM,
+EXTERN,
+FLOAT,
+FOR,
+GOTO,
+IF,
+INLINE,
+INT,
+LONG,
+REGISTRT,
+RESTRICT,
+RETURN,
+SHORT,
+SIGNED,
+SIZEOF,
+STATIC,
+STRUCT,
+SWITCH,
+TYPEDF,
+UNION,
+UNSIGNED,
+VOID,
+VOLATILE,
+WHILE,
+ALIGNAS,
+ALIGNOF,
+ATOMIC,
+BOOL,
+COMPLEX,
+GENERIC,
+IMAGINARY,
+STATIC_ASSERT,
+THREAD_LOCAL,
+FUNC_NAME,
+ELLIPSIS,
+RIGHT_ASSIGN,
+LEFT_ASSIGN,
+ADD_ASSIGN,
+SUB_ASSIGN,
+MUL_ASSIGN,
+DIV_ASSIGN,
+MOD_ASSIGN,
+AND_ASSIGN,
+XOR_ASSIGN,
+OR_ASSIGN,
+RIGHT_OP,
+LEFT_OP,
+INC_OP,
+DEC_OP,
+PTR_OP,
+AND_OP,
+OR_OP,
+LE_OP,
+GE_OP,
+EQ_OP,
+NE_OP,
+NORETURN,
+NO,
+};
+
+
+class token{
+    string s;
+    types t = NO;
+public:
+    void print();
+    token(string s,types t);
+    token(string s);
+};

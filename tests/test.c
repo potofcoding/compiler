@@ -3,7 +3,7 @@
 //
 // main is where all program execution starts
 //
-int main(int argc, char **argv) {
+int main() {
   printf("Hello there.\n");
   return 0;
 }
