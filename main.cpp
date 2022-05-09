@@ -1,12 +1,6 @@
 #include <iostream>
-#include <fstream>
-#include <ostream>
-#include <string>
-#include <bits/stdc++.h>
-#include <vector>
 #include "filem/filem.h"
 #include "lexical/lexical.h"
-
 
 using namespace std;
 

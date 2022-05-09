@@ -3,6 +3,8 @@
 #include<ostream>
 #include <iostream>
 using namespace std;
+
+
 class filem{
     ofstream filer;
 public:

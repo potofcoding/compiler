@@ -18,7 +18,7 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     default:
-                        lexem.push_back(token(":",NO));
+                        lexem.push_back(token(":"));
                 }//handle ::
             break;
             case '=':
@@ -27,7 +27,7 @@ void lexical::run(string buffer){
                     end++;
                 }
                 else{
-                    lexem.push_back(token("=",NO));
+                    lexem.push_back(token("="));
                 }
             break;
             case '.':
@@ -35,7 +35,7 @@ void lexical::run(string buffer){
                     lexem.push_back(token("...",ELLIPSIS));
                     end+=2;
                 }else{
-                    lexem.push_back(token(".",NO));
+                    lexem.push_back(token("."));
                 }
             break;
             case '&':
@@ -49,7 +49,7 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     default:
-                        lexem.push_back(token("&",NO));
+                        lexem.push_back(token("&"));
                 }
             break;
             case '!':
@@ -57,11 +57,11 @@ void lexical::run(string buffer){
                     lexem.push_back(token("!=",NE_OP));
                     end++;
                 }else{
-                    lexem.push_back(token("!",NO));
+                    lexem.push_back(token("!"));
                 }
             break;
             case '~':
-                lexem.push_back(token("~",NO));
+                lexem.push_back(token("~"));
             break;
             case '-':
                 switch(buffer[end+1]){
@@ -78,7 +78,7 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     default:
-                        lexem.push_back(token("-",NO));
+                        lexem.push_back(token("-"));
                 }
             break;
             case '+':
@@ -92,7 +92,7 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     default:
-                        lexem.push_back(token("+",NO));
+                        lexem.push_back(token("+"));
                 }
             break;
             case '*':
@@ -102,7 +102,7 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     default:
-                        lexem.push_back(token("*",NO));
+                        lexem.push_back(token("*"));
                 }
             break;
             case '/':
@@ -112,7 +112,7 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     default:
-                        lexem.push_back(token("/",NO));
+                        lexem.push_back(token("/"));
                 }
             break;
             case '%':
@@ -122,11 +122,11 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     case '>':
-                        lexem.push_back(token("}",NO));
+                        lexem.push_back(token("}"));
                         end++;
                     break;
                     default:
-                        lexem.push_back(token("%",NO));
+                        lexem.push_back(token("%"));
                 }
             break;
             case '>':
@@ -141,7 +141,7 @@ void lexical::run(string buffer){
                     lexem.push_back(token(">>",RIGHT_OP));
                     end++;
                 }else{
-                    lexem.push_back(token(">",NO));
+                    lexem.push_back(token(">"));
                 }
             break;
             case '<':
@@ -156,13 +156,13 @@ void lexical::run(string buffer){
                     lexem.push_back(token("<<",LEFT_OP));
                     end++;
                 }else if(buffer[end+1]==':'){
-                    lexem.push_back(token("[",NO));
+                    lexem.push_back(token("["));
                     end++;
                 }else if(buffer[end+1]=='%'){
-                    lexem.push_back(token("{",NO));
+                    lexem.push_back(token("{"));
                     end++;
                 }else{
-                    lexem.push_back(token("<",NO));
+                    lexem.push_back(token("<"));
                 }
             break;
             case '^':
@@ -172,7 +172,7 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     default:
-                        lexem.push_back(token("^",NO));
+                        lexem.push_back(token("^"));
                 }
             break;
             case '|':
@@ -186,33 +186,36 @@ void lexical::run(string buffer){
                         end++;
                     break;
                     default:
-                        lexem.push_back(token("|",NO));
+                        lexem.push_back(token("|"));
                 }
             break;
             case '?':
-                lexem.push_back(token("?",NO));
+                lexem.push_back(token("?"));
             break;
             case '(':
-                lexem.push_back(token("(",NO));
+                lexem.push_back(token("("));
             break;
             case ')':
-                lexem.push_back(token(")",NO));
+                lexem.push_back(token(")"));
             break;
             case '[':
-                lexem.push_back(token("[",NO));
+                lexem.push_back(token("["));
             break;
             case ']':
-                lexem.push_back(token("]",NO));
+                lexem.push_back(token("]"));
             break;
             case '{':
-                lexem.push_back(token("{",NO));
+                lexem.push_back(token("{"));
             break;
             case '}':
-                lexem.push_back(token("}",NO));
+                lexem.push_back(token("}"));
             break;
             default:
             break;
         }
         end++;
+    }
+    for (token i :lexem){
+        i.print();
     }
 }

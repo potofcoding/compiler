@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 using namespace std;
-string wtypes[67] ={"auto",};
 
 enum types{
 AUTO,
