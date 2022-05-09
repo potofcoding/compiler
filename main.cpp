@@ -12,5 +12,4 @@ int main(int argc, char* argv[]){
         fm.load_file_into_variable(argv[1],buffer);
         l.run(buffer);
     }
-    cout<<buffer;
 } 
