@@ -3,7 +3,7 @@
 using namespace std;
 #include <string>
 #include<vector>
-
+#include<fstream>
 enum types{
 AUTO=0,
 BREAK,
@@ -230,7 +230,7 @@ class token{
     int len=1;
     int line=1;
 public:
-    void print();
+    void print(ofstream& f);
     token(string s,types t,int start,int len,int line);
     token(string s,int start, int line);
     void see_its_type();

@@ -1,6 +1,6 @@
 #include "lexical.h"
 
-void lexical::run(string buffer){
+void lexical::run(string buffer,ofstream& f){
     this->buffer = buffer;
     while(end !=  (int) buffer.size()){
         switch(buffer[end]){
@@ -376,7 +376,7 @@ void lexical::run(string buffer){
         }
     }
     for (token i :lexem){
-        i.print();
+        i.print(f);
     }
     
 }

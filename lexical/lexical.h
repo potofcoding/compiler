@@ -12,5 +12,5 @@ class lexical{
     string buffer;
     vector<token> lexem;
 public:
-    void run(string buffer);
+    void run(string buffer ,ofstream& f);
 };

@@ -1,13 +1,13 @@
 #include "token.h"
 
-void token::print(){
+void token::print(ofstream& f){
     if (t==NO){
-        cout<< "<"<<s<< "|" <<start <<"|"<<len<<"|"<<line<<">\n";
+        f<< "<"<<s<< "|" <<start <<"|"<<len<<"|"<<line<<">\n";
     }
     else if (t==IDENTIFIER){
-        cout<< "<"<<s<<'|'<<t<< "|" <<start<<"|"<<len<<"|"<<line<<">\n";
+        f<< "<"<<s<<'|'<<t<< "|" <<start<<"|"<<len<<"|"<<line<<">\n";
     }else{
-        cout<< "<"<<s<<'|'<<typenames[(int) t]<< "|" <<start<<"|"<<len<<"|"<<line<<">\n";
+        f<< "<"<<s<<'|'<<typenames[(int) t]<< "|" <<start<<"|"<<len<<"|"<<line<<">\n";
     }
 }
 
