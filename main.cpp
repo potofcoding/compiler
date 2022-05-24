@@ -11,6 +11,8 @@ int main(int argc, char* argv[]){
     if (argc>=2){
         fm.load_file_into_variable(argv[1],buffer);
         l.run(buffer);
+        fm.filer.open ("../lexical.sad");
+        fm.filer<< "Writing this e.\n";
+        fm.filer.close();
     }
-    cout<<buffer;
 } 

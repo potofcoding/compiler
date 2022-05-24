@@ -6,8 +6,8 @@ using namespace std;
 
 
 class filem{
-    ofstream filer;
 public:
+    ofstream filer;
     void load_file_into_variable(char* file,string &s);
     void write_to_file(string s,void (*ptr)());
 };
