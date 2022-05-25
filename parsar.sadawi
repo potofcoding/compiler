@@ -1,4 +1,3 @@
-<string|type|start charater pos|len|line>
 <int|INT|60|3|12>
 <sad_sad_sad|IDENTIFIER|64|11|12>
 <;|SEMICOLON|75|1|12>

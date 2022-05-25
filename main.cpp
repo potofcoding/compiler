@@ -14,5 +14,8 @@ int main(int argc, char* argv[]){
         fm.filer.open("../lexical.sad");
         l.run(buffer,fm.filer);
         fm.filer.close();
+        fm.filer.open("../parsar.sadawi");
+        fm.filer<<"sad";
+        fm.filer.close();
     }
 } 

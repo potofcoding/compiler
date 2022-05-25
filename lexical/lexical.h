@@ -3,6 +3,7 @@
 #include <vector>
 #include "token.h"
 #include <string>
+#include <unordered_map>
 using namespace std;
 
 class lexical{
@@ -10,7 +11,8 @@ class lexical{
     int end=0;
     int line=1;
     string buffer;
-    vector<token> lexem;
 public:
+    vector<token> lexem;
+    unordered_map<string,int> id_table;
     void run(string buffer ,ofstream& f);
 };

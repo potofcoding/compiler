@@ -75,7 +75,30 @@ NORETURN,
 IDENTIFIER,
 STRING_LITERAL,
 I_CONSTANT,
-NO,
+SEMICOLON,
+LEFT_CURLY_BRACKET,// {
+RIGHT_CURLY_BRACKET,
+COMMA,
+COLLON,
+ASSIMENT,
+LEFT_BRACKET,
+RIGHT_BRACKET,
+LEFT_SQUARE_BRACKET,
+RIGHT_SQUARE_BRACKET,
+DOT,
+AND,
+EXCLIMATION,
+TELDA,
+MINUS,
+PLUS,
+ASTRICS,
+FORWARD_SLASH,
+PERCENT,
+LESS_THAN,
+GREATER_THAN,
+POWER,
+STICK,
+QUISTION_MARK,
 };
 
 const vector<string> typenames{
@@ -149,7 +172,30 @@ const vector<string> typenames{
 "IDENTIFIER",
 "STRING_LITERAL",
 "I_CONSTANT",
-"NO",
+"SEMICOLON",
+"LEFT_CURLY_BRACKET",// {
+"RIGHT_CURLY_BRACKET",
+"COMMA",
+"COLLON",
+"ASSIMENT",
+"LEFT_BRACKET",
+"RIGHT_BRACKET",
+"LEFT_SQUARE_BRACKET",
+"RIGHT_SQUARE_BRACKET",
+"DOT",
+"AND",
+"EXCLIMATION",
+"TELDA",
+"MINUS",
+"PLUS",
+"ASTRICS",
+"FORWARD_SLASH",
+"PERCENT",
+"LESS_THAN",
+"GREATER_THAN",
+"POWER",
+"STICK",
+"QUISTION_MARK",
 };
 
 
@@ -221,17 +267,43 @@ const vector<string> keys{
 "==",
 "!=",
 "_Noreturn"
+";",
+"{",// {
+"}",
+",",
+":",
+"=",
+"(",
+")",
+"[",
+"]",
+".",
+"&",
+"!",
+"~",
+"-",
+"+",
+"*",
+"/",
+"%",
+"<",
+">",
+"^",
+"|",
+"?",
 };
 
 class token{
     string s;
-    types t = NO;
+    types t;
     int start;
     int len=1;
     int line=1;
 public:
     void print(ofstream& f);
     token(string s,types t,int start,int len,int line);
-    token(string s,int start, int line);
+    token(string s,types t,int start, int line);
     void see_its_type();
+    bool has_type();
+    types give_type();
 };

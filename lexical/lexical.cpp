@@ -5,12 +5,12 @@ void lexical::run(string buffer,ofstream& f){
     while(end !=  (int) buffer.size()){
         switch(buffer[end]){
             case ';':
-                lexem.push_back(token(";",start,line));
+                lexem.push_back(token(";",SEMICOLON,start,line));
                 end++;
                 start = end;
             break;
             case ',':
-                lexem.push_back(token(",",start,line));
+                lexem.push_back(token(",",COMMA,start,line));
                 end++;
                 start = end;
             break;
@@ -23,7 +23,7 @@ void lexical::run(string buffer,ofstream& f){
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token(":",start,line));
+                        lexem.push_back(token(":",COLLON,start,line));
                         end++;
                         start = end;
                 }//handle ::
@@ -36,7 +36,7 @@ void lexical::run(string buffer,ofstream& f){
                     start = end;
                 }
                 else{
-                    lexem.push_back(token("=",start,line));
+                    lexem.push_back(token("=",ASSIMENT,start,line));
                     end++;
                     start = end;
                 }
@@ -44,11 +44,11 @@ void lexical::run(string buffer,ofstream& f){
             case '.':
                 if (buffer[end+1]=='.'&&buffer[end+2]=='.'){
                     end+=2;
-                    lexem.push_back(token("...",end-start,line));
+                    lexem.push_back(token("...",ELLIPSIS,end-start,line));
                     end++;
                     start = end;
                 }else{
-                    lexem.push_back(token(".",start,line));
+                    lexem.push_back(token(".",DOT,start,line));
                     end++;
                     start = end;
                 }
@@ -68,7 +68,7 @@ void lexical::run(string buffer,ofstream& f){
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token("&",start,line));
+                        lexem.push_back(token("&",AND,start,line));
                         end++;
                         start = end;
                 }
@@ -79,13 +79,13 @@ void lexical::run(string buffer,ofstream& f){
                     lexem.push_back(token("!=",NE_OP,start,end-start,line));
                     end++;
                 }else{
-                    lexem.push_back(token("!",start,line));
+                    lexem.push_back(token("!",EXCLIMATION,start,line));
                     end++;
                     start = end;
                 }
             break;
             case '~':
-                lexem.push_back(token("~",start,line));
+                lexem.push_back(token("~",TELDA,start,line));
                 end++;
                 start = end;
             break;
@@ -110,7 +110,7 @@ void lexical::run(string buffer,ofstream& f){
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token("-",start,line));
+                        lexem.push_back(token("-",MINUS,start,line));
                         end++;
                         start = end;
                 }
@@ -130,7 +130,7 @@ void lexical::run(string buffer,ofstream& f){
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token("+",start,line));
+                        lexem.push_back(token("+",PLUS,start,line));
                         end++;
                         start = end;
                 }
@@ -144,7 +144,7 @@ void lexical::run(string buffer,ofstream& f){
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token("*",start,line));
+                        lexem.push_back(token("*",ASTRICS,start,line));
                         end++;
                         start = end;
                 }
@@ -168,10 +168,7 @@ void lexical::run(string buffer,ofstream& f){
                         if (buffer[end]=='\n'){
                             line++;
                         }
-                        end+=3;
-                        if (buffer[end]=='\n'){
-                                line++;
-                        }
+                        end+=2;
                         cout<<"long comment\n";
                         start = end;
                     break;
@@ -179,13 +176,11 @@ void lexical::run(string buffer,ofstream& f){
                         while(buffer[end]!='\n'){
                             end++;
                         }
-                        end++;
-                        line++;
                         cout<<"line comment\n";
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token("/",start,line));
+                        lexem.push_back(token("/",FORWARD_SLASH,start,line));
                         end++;
                         start = end;
                 }
@@ -200,12 +195,12 @@ void lexical::run(string buffer,ofstream& f){
                     break;
                     case '>':
                         end++;
-                        lexem.push_back(token("}",start,line));
+                        lexem.push_back(token("}",LEFT_CURLY_BRACKET,start,line));
                         end++;
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token("%",start,line));
+                        lexem.push_back(token("%",PERCENT,start,line));
                         end++;
                         start = end;
                 }
@@ -228,7 +223,7 @@ void lexical::run(string buffer,ofstream& f){
                     end++;
                     start = end;
                 }else{
-                    lexem.push_back(token(">",end,line));
+                    lexem.push_back(token(">",GREATER_THAN,end,line));
                     end++;
                     start = end;
                 }
@@ -252,16 +247,16 @@ void lexical::run(string buffer,ofstream& f){
                     start = end;
                 }else if(buffer[end+1]==':'){
                     end++;
-                    lexem.push_back(token("[",end,line));
+                    lexem.push_back(token("[",LEFT_SQUARE_BRACKET,end,line));
                     end++;
                     start = end;
                 }else if(buffer[end+1]=='%'){
                     end++;
-                    lexem.push_back(token("{",end,line));
+                    lexem.push_back(token("{",LEFT_CURLY_BRACKET,end,line));
                     end++;
                     start = end;
                 }else{
-                    lexem.push_back(token("<",end,line));
+                    lexem.push_back(token("<",LESS_THAN,end,line));
                     end++;
                     start = end;
                 }
@@ -275,7 +270,7 @@ void lexical::run(string buffer,ofstream& f){
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token("^",end,line));
+                        lexem.push_back(token("^",POWER,end,line));
                         end++;
                         start = end;
                 }
@@ -295,43 +290,43 @@ void lexical::run(string buffer,ofstream& f){
                         start = end;
                     break;
                     default:
-                        lexem.push_back(token("|",end,line));
+                        lexem.push_back(token("|",STICK,start,line));
                         end++;
                         start = end;
                 }
             break;
             case '?':
-                lexem.push_back(token("?",end,line));
+                lexem.push_back(token("?",QUISTION_MARK,start,line));
                 end++;
                 start = end;
             break;
             case '(':
-                lexem.push_back(token("(",start,line));
+                lexem.push_back(token("(",LEFT_BRACKET,start,line));
                 end++;
                 start = end;
             break;
             case ')':
-                lexem.push_back(token(")",start,line));
+                lexem.push_back(token(")",RIGHT_BRACKET,start,line));
                 end++;
                 start = end;
             break;
             case '[':
-                lexem.push_back(token("[",start,line));
+                lexem.push_back(token("[",LEFT_SQUARE_BRACKET,start,line));
                 end++;
                 start = end;
             break;
             case ']':
-                lexem.push_back(token("]",start,line));
+                lexem.push_back(token("]",RIGHT_SQUARE_BRACKET,start,line));
                 end++;
                 start = end;
             break;
             case '{':
-                lexem.push_back(token("{",start,line));
+                lexem.push_back(token("{",LEFT_CURLY_BRACKET,start,line));
                 end++;
                 start = end;
             break;
             case '}':
-                lexem.push_back(token("}",start,line));
+                lexem.push_back(token("}",RIGHT_CURLY_BRACKET,start,line));
                 end++;
                 start = end;
             break;
@@ -360,7 +355,7 @@ void lexical::run(string buffer,ofstream& f){
                     while((buffer[end]>='A' && buffer[end]<='Z') || (buffer[end]>='a' && buffer[end]<='z')||(buffer[end] >= '0' and buffer[end] <= '9') || buffer[end] == '_'){
                         end++;
                     }
-                    token t = token(buffer.substr(start,end-start),NO,start,end-start,line);
+                    token t = token(buffer.substr(start,end-start),AUTO,start,end-start,line);
                     t.see_its_type();
                     lexem.push_back(t);
                     start = end;

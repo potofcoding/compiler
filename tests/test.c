@@ -5,15 +5,10 @@ asdasd
 asdasdaaaa
 */
 
-/*
-asdasd
-asdasd
-asdasd
-asdasdaaaa
-*/
-//
-// main is where all program execution starts
-//
+//life 
+//is 
+//sad
+
 int sad_sad_sad;
 int main() {
   int sad;

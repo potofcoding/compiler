@@ -4,5 +4,6 @@ executable(
     'main.cpp',
     'filem/filem.cpp',
     'lexical/token.cpp',
-    'lexical/lexical.cpp'
+    'lexical/lexical.cpp',
+    'parser/parser.h'
     )
