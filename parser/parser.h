@@ -2,16 +2,15 @@
 #include<../lexical/lexical.h>
 #include "tree.hh"
 class parser{
-    int start;
-    int end;
-    vector<token> lexem;
+    int start=0;
+    int end=0;
     tree<string> tr;
 public:
-    parser(vector<token>& lexem){this->lexem = lexem;};
+    vector<token> lexem;
     bool primary_expression(int p);
-    bool constant(int p); // #
+    bool constant(int p);
     bool enumeration_constant(int p);
-    bool string(int p);
+    bool String(int p);
     bool generic_selection(int p);
     bool generic_assoc_list(int p);
     bool generic_association(int p);
@@ -85,4 +84,5 @@ public:
     bool external_declaration(int p);
     bool function_definition(int p);
     bool declaration_list(int p);
+    void run();
 };

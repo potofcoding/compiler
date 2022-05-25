@@ -5,5 +5,5 @@ executable(
     'filem/filem.cpp',
     'lexical/token.cpp',
     'lexical/lexical.cpp',
-    'parser/parser.h'
+    'parser/parser.cpp'
     )

@@ -12,7 +12,11 @@ constant
 */
 bool parser::constant (int p){
     switch(lexem[p].give_type()){
-        case I_CONSTANT: return true; break;
+        case I_CONSTANT:
+            p++;
+            start = p; 
+            return true; 
+            break;
         default:return false;
     }
 }
@@ -22,8 +26,10 @@ string
 	| FUNC_NAME
 	;
 */
-bool parser::string(int p){
+bool parser::String(int p){
     switch(lexem[p].give_type()){
+        p++;
+        start = p;
         case STRING_LITERAL :return true;break;
         case FUNC_NAME:return true;break;
         default:return false;
@@ -70,7 +76,7 @@ bool parser::generic_assoc_list(int p){
         return true;
     }else if(generic_assoc_list(p)
         && lexem[p+1].give_type() == COMMA
-        && generic_association
+        && generic_association(p+2)
     ){
         return true;
     }
@@ -104,6 +110,7 @@ postfix_expression
 	| '(' type_name ')' '{' initializer_list '}'
 	| '(' type_name ')' '{' initializer_list ',' '}'
 */
+/*
 bool parser::postfix_expression(int p){
     if (primary_expression(p)){
         return true;
@@ -161,6 +168,7 @@ bool parser::postfix_expression(int p){
     return false;
     
 }
+*/
 /*
 argument_expression_list
 	: assignment_expression
@@ -190,6 +198,7 @@ unary_expression
 	| ALIGNOF '(' type_name ')'
 	;
 */
+/*
 bool parser::unary_expression(int p){
     if (postfix_expression(p)){
         return true;
@@ -222,4 +231,91 @@ bool parser::unary_expression(int p){
         
     }
     return false;
+}
+*/
+/*
+direct_declarator
+	: IDENTIFIER
+	| '(' declarator ')'
+	| direct_declarator '[' ']'
+	| direct_declarator '[' '*' ']'
+	| direct_declarator '[' STATIC type_qualifier_list assignment_expression ']'
+	| direct_declarator '[' STATIC assignment_expression ']'
+	| direct_declarator '[' type_qualifier_list '*' ']'
+	| direct_declarator '[' type_qualifier_list STATIC assignment_expression ']'
+	| direct_declarator '[' type_qualifier_list assignment_expression ']'
+	| direct_declarator '[' type_qualifier_list ']'
+	| direct_declarator '[' assignment_expression ']'
+	| direct_declarator '(' parameter_type_list ')'
+	| direct_declarator '(' ')'
+	| direct_declarator '(' identifier_list ')'
+	;
+*/
+/*
+compound_statement
+	: '{' '}'
+	| '{'  block_item_list '}'
+	;
+*/
+bool parser::compound_statement(int p){
+    if (lexem[p].give_type()==LEFT_CURLY_BRACKET
+        &&lexem[p+1].give_type()==RIGHT_CURLY_BRACKET
+        ){
+            cout<<"compoun";
+            end += 2;
+            return true;
+        }
+    return false;
+}
+
+/*
+selection_statement
+	: IF '(' expression ')' statement ELSE statement
+	| IF '(' expression ')' statement
+	| SWITCH '(' expression ')' statement
+	;
+*/
+bool parser::statement(int p){
+    if (compound_statement(p)
+    ){
+        cout<<"statment";
+        end = p;
+        return true;
+    }
+}
+
+
+
+bool parser::selection_statement(int p){
+    if (lexem[p].give_type() == IF
+        && lexem[p+1].give_type() == LEFT_BRACKET
+        && expression(p+2)
+        && lexem[p+3].give_type() == RIGHT_BRACKET
+        && statement(p+4)
+        ){
+            cout<<"selective";
+            end += 4;
+            return true;
+        }
+    return false;
+}
+
+/*
+statement
+	: labeled_statement
+	| compound_statement
+	| expression_statement
+	| selection_statement
+	| iteration_statement
+	| jump_statement
+	;
+*/
+
+
+
+
+void parser::run(){
+    while(end != lexem.size()){
+        compound_statement(end);
+    }
 }
